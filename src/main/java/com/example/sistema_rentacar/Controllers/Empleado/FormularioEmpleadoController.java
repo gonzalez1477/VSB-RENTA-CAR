@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class FormularioEmpleadoController {
 
@@ -35,6 +36,9 @@ public class FormularioEmpleadoController {
     private Empleado empleadoActual;
     private DashboardEmpleadoController dashboardController;
     private boolean esEdicion;
+
+    private static final Pattern TELEFONO_PATTERN = Pattern.compile("^\\d{4}-\\d{4}$");
+
 
     @FXML
     public void initialize() {
@@ -162,6 +166,16 @@ public class FormularioEmpleadoController {
         // Validar email
         if (!email.contains("@")) {
             mostrarError("Email inválido");
+            return false;
+        }
+
+
+
+        // **VALIDACIÓN 4: Formato de teléfono**
+        if (!TELEFONO_PATTERN.matcher(telefono).matches()) {
+            mostrarError("El teléfono debe tener el formato: 0000-0000 (ejemplo: 7890-1234)");
+            txtTelefono.requestFocus();
+
             return false;
         }
 

@@ -216,6 +216,14 @@ public class RegistroClienteController {
                 return;
             }
 
+            // Validar formato de licencia salvadoreña (ejemplo: A123456789)
+            if (!licencia.matches("^[A-Z]{1}\\d{9}$")) {
+                mostrarError("Formato de licencia inválido. Debe ser: Letra + 9 dígitos (Ej: A123456789)");
+                txtLicencia.requestFocus();
+                btnRegistrar.setDisable(false);
+                return;
+            }
+
             // **VALIDACIÓN 7: Fecha de nacimiento (edad mínima 18 años)**
             LocalDate fechaActual = LocalDate.now();
             Period edad = Period.between(fechaNac, fechaActual);

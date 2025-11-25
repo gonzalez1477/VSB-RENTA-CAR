@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class PerfilClienteController {
 
@@ -52,6 +53,8 @@ public class PerfilClienteController {
     private Cliente clienteActual;
     private ClienteRepository clienteDAO;
     private boolean modoEdicion = false;
+
+    private static final Pattern TELEFONO_PATTERN = Pattern.compile("^\\d{4}-\\d{4}$");
 
     @FXML
     public void initialize() {
@@ -243,6 +246,28 @@ public class PerfilClienteController {
 
         if (dpFechaNacimiento.getValue().isAfter(LocalDate.now().minusYears(18))) {
             mostrarError("Debe ser mayor de 18 años");
+            return false;
+        }
+
+        // Validar formato de licencia salvadoreña (ejemplo: A123456789)
+        if (!licencia.matches("^[A-Z]{1}\\d{9}$")) {
+            mostrarError("Formato de licencia inválido. Debe ser: Letra + 9 dígitos (Ej: A123456789)");
+            txtLicencia.requestFocus();
+            return false;
+        }
+
+        // Validar formato completo del DUI salvadoreño
+        if (!dui.matches("^\\d{8}-\\d{1}$")) {
+            mostrarError("Formato de DUI inválido. Use: 12345678-9");
+            txtDui.requestFocus();
+            return false;
+        }
+
+        // **VALIDACIÓN 4: Formato de teléfono**
+        if (!TELEFONO_PATTERN.matcher(telefono).matches()) {
+            mostrarError("El teléfono debe tener el formato: 0000-0000 (ejemplo: 7890-1234)");
+            txtTelefono.requestFocus();
+
             return false;
         }
 
