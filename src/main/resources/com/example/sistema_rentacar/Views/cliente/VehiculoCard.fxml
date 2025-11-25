@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sistema_rentacar.Controllers.Cliente.VehiculoCardController"
+      styleClass="car-card"
+      style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 15, 0, 0, 3);"
+      spacing="12" prefWidth="300" prefHeight="380">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- Imagen del auto -->
+    <StackPane prefHeight="160">
+        <ImageView fx:id="carImage" fitWidth="270" fitHeight="160" preserveRatio="true"/>
+
+        <!-- Badge de disponibilidad -->
+        <Label fx:id="availabilityBadge" text="DISPONIBLE"
+               style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 6 12; -fx-background-radius: 6; -fx-font-size: 11px; -fx-font-weight: bold;"
+               StackPane.alignment="TOP_RIGHT">
+            <StackPane.margin>
+                <Insets top="12" right="12"/>
+            </StackPane.margin>
+        </Label>
+    </StackPane>
+
+    <!-- Información del auto -->
+    <VBox spacing="10">
+        <Label fx:id="carModel" text="Toyota Corolla 2024"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" wrapText="true"/>
+
+        <GridPane hgap="12" vgap="8">
+            <Label fx:id="carTransmission" text="🔧 Automático"
+                   style="-fx-font-size: 13px; -fx-text-fill: #555;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="carPassengers" text="👥 5 pasajeros"
+                   style="-fx-font-size: 13px; -fx-text-fill: #555;"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label fx:id="carFuel" text="⛽ Gasolina"
+                   style="-fx-font-size: 13px; -fx-text-fill: #555;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="carAC" text="❄️ A/C"
+                   style="-fx-font-size: 13px; -fx-text-fill: #555;"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+            </columnConstraints>
+        </GridPane>
+
+        <Separator style="-fx-padding: 5 0;"/>
+
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="Desde" style="-fx-font-size: 13px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="carPrice" text="\$45.00"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+            <Label text="/día" style="-fx-font-size: 13px; -fx-text-fill: #7f8c8d;"/>
+        </HBox>
+
+        <Button fx:id="rentButton" text="Alquilar Ahora"
+                onAction="#handleRentButton"
+                maxWidth="Infinity" prefHeight="45"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;">
+            <VBox.margin>
+                <Insets top="8"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+
+</VBox>

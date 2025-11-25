@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sistema_rentacar.Controllers.Empleado.FormularioTipoVehiculoController"
+      spacing="0" prefWidth="700" prefHeight="700"
+      styleClass="form-container"
+      style="-fx-background-color: #f8f9fa;"
+      stylesheets="@../../css/estilosFormularioCategoria.css">
+
+    <!-- Header del formulario -->
+    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="form-header"
+          style="-fx-background-color: linear-gradient(to right, #8e44ad, #9b59b6); -fx-padding: 25 30;">
+        <Label text="📂" style="-fx-font-size: 32px;"/>
+        <VBox spacing="3">
+            <Label fx:id="lblTitulo" text="Nueva Categoría de Vehículo"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Define una nueva categoría para organizar vehículos"
+                   style="-fx-font-size: 13px; -fx-text-fill: rgba(255, 255, 255, 0.8);"/>
+        </VBox>
+    </HBox>
+
+    <!-- Contenido del formulario -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent; -fx-background: transparent;">
+        <VBox spacing="25" style="-fx-padding: 30;">
+
+            <!-- Sección: Información de la Categoría -->
+            <VBox spacing="15" styleClass="form-section">
+                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="section-header">
+                    <Label text="🏷️" style="-fx-font-size: 18px;"/>
+                    <Label text="Información de la Categoría"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Region style="-fx-min-width: 50; -fx-background-color: linear-gradient(to right, #9b59b6, transparent); -fx-min-height: 2;"/>
+                </HBox>
+
+                <VBox spacing="18">
+                    <!-- Nombre -->
+                    <VBox spacing="8">
+                        <Label text="Nombre de la Categoría *" styleClass="field-label"/>
+                        <TextField fx:id="txtNombre" promptText="Ej: Superdeportivos, Clásicos, Eléctricos..."
+                                   styleClass="form-field"/>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="ℹ️" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                            <Label text="Este nombre aparecerá en el catálogo de clientes"
+                                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 11px;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Tarifa -->
+                    <VBox spacing="8">
+                        <Label text="Tarifa por Día (USD) *" styleClass="field-label"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="\$" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+                            <TextField fx:id="txtTarifa" promptText="125.00"
+                                       styleClass="form-field" maxWidth="200"/>
+                            <Label text="USD/día" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+                        </HBox>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="💰" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                            <Label text="Tarifa base para vehículos de esta categoría"
+                                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 11px;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Descripción -->
+                    <VBox spacing="8">
+                        <Label text="Descripción" styleClass="field-label"/>
+                        <TextArea fx:id="txtDescripcion" promptText="Describe las características y beneficios de esta categoría..."
+                                  prefRowCount="4" styleClass="form-textarea"/>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="✍️" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                            <Label text="Información que verán los clientes al seleccionar esta categoría"
+                                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 11px;"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <!-- Separador decorativo -->
+            <Separator style="-fx-background-color: #e0e0e0; -fx-padding: 5 0;"/>
+
+            <!-- Sección: Información del Sistema -->
+            <VBox spacing="15" styleClass="info-section">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="💡" style="-fx-font-size: 20px;"/>
+                    <Label text="Información del Sistema"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                </HBox>
+
+                <VBox spacing="12" styleClass="info-box">
+                    <!-- Carpeta -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="📁" style="-fx-font-size: 16px;"/>
+                        <VBox spacing="3" HBox.hgrow="ALWAYS">
+                            <Label text="Carpeta de Imágenes" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #2c3e50;"/>
+                            <Label fx:id="lblNombreCarpeta" text="/images/categoria/"
+                                   style="-fx-text-fill: #3498db; -fx-font-size: 12px; -fx-font-family: 'Courier New'; -fx-font-weight: bold;"/>
+                        </VBox>
+                    </HBox>
+
+                    <Separator style="-fx-background-color: rgba(0,0,0,0.1);"/>
+
+                    <!-- Características automáticas -->
+                    <VBox spacing="8">
+                        <Label text="Configuración Automática:" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #2c3e50;"/>
+
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="✅" style="-fx-font-size: 14px;"/>
+                            <Label text="La carpeta se creará automáticamente al guardar"
+                                   style="-fx-text-fill: #5a6c7d; -fx-font-size: 12px;"/>
+                        </HBox>
+
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="✅" style="-fx-font-size: 14px;"/>
+                            <Label text="Las imágenes de vehículos se organizarán en esta carpeta"
+                                   style="-fx-text-fill: #5a6c7d; -fx-font-size: 12px;"/>
+                        </HBox>
+
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="✅" style="-fx-font-size: 14px;"/>
+                            <Label text="La categoría aparecerá en el catálogo de clientes"
+                                   style="-fx-text-fill: #5a6c7d; -fx-font-size: 12px;"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- Footer con botones -->
+    <VBox spacing="0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, -2);">
+
+        <!-- Nota de campos obligatorios -->
+        <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 15 30 10 30;">
+            <Label text="*" style="-fx-text-fill: #e74c3c; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="Campos obligatorios"
+                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <Separator style="-fx-background-color: #e0e0e0;"/>
+
+        <!-- Botones de acción -->
+        <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20 30;">
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="btnCancelar" text="❌ Cancelar" onAction="#handleCancelar"
+                    styleClass="btn-secondary"
+                    prefWidth="180" prefHeight="45"/>
+
+            <Button fx:id="btnGuardar" text="💾 Crear Categoría" onAction="#handleGuardar"
+                    styleClass="btn-success"
+                    prefWidth="200" prefHeight="45"/>
+        </HBox>
+    </VBox>
+
+</VBox>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sistema_rentacar.Controllers.Cliente.DialogoEntregaAnticipadaController"
+      spacing="0" prefWidth="550" prefHeight="650"
+      styleClass="entrega-dialog-container"
+      stylesheets="@../../css/estilosDialogoEntregaAnticipada.css">
+
+    <!-- Header del diálogo -->
+    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="entrega-header">
+        <Label text="⚠️" styleClass="entrega-icon"/>
+        <VBox spacing="3">
+            <Label text="Entrega Anticipada" styleClass="entrega-title"/>
+            <Label text="Devolución del vehículo antes de la fecha acordada" styleClass="entrega-subtitle"/>
+        </VBox>
+    </HBox>
+
+    <!-- ScrollPane para el contenido -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="entrega-scroll-pane">
+        <VBox spacing="20" style="-fx-padding: 25;">
+
+            <!-- Información del Alquiler -->
+            <VBox spacing="15" styleClass="info-alquiler-box">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="📋" styleClass="icon-decoration"/>
+                    <Label text="Información del Alquiler" styleClass="info-section-title"/>
+                </HBox>
+
+                <GridPane hgap="15" vgap="12">
+                    <Label text="Vehículo:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                           styleClass="info-label"/>
+                    <Label fx:id="lblVehiculo" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                           styleClass="info-value"/>
+
+                    <Label text="Fecha Inicio:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                           styleClass="info-label"/>
+                    <Label fx:id="lblFechaInicio" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                           styleClass="info-value"/>
+
+                    <Label text="Fecha Fin Estimada:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                           styleClass="info-label"/>
+                    <Label fx:id="lblFechaFin" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                           styleClass="info-value"/>
+
+                    <Label text="Días Contratados:" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                           styleClass="info-label"/>
+                    <Label fx:id="lblDiasContratados" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                           styleClass="info-value"/>
+
+                    <Label text="Días Utilizados:" GridPane.columnIndex="0" GridPane.rowIndex="4"
+                           styleClass="info-label"/>
+                    <Label fx:id="lblDiasUtilizados" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4"
+                           styleClass="info-value-highlight"/>
+
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="40"/>
+                        <ColumnConstraints percentWidth="60"/>
+                    </columnConstraints>
+                </GridPane>
+            </VBox>
+
+            <!-- Cálculo de Reembolso -->
+            <VBox spacing="15" styleClass="reembolso-box">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="💰" styleClass="icon-decoration"/>
+                    <Label text="Cálculo de Reembolso" styleClass="reembolso-title"/>
+                </HBox>
+
+                <Separator style="-fx-background-color: rgba(40, 167, 69, 0.3);"/>
+
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Días no utilizados:" styleClass="reembolso-label"/>
+                    <Label fx:id="lblDiasNoUtilizados" text="0" styleClass="reembolso-dias"/>
+                    <Label text="días" style="-fx-font-size: 13px; -fx-text-fill: #155724;"/>
+                </HBox>
+
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Monto a reembolsar:" styleClass="reembolso-label"/>
+                    <Label fx:id="lblMontoReembolso" text="\$0.00" styleClass="reembolso-monto"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+                    <Label text="✓" style="-fx-font-size: 16px; -fx-text-fill: #27ae60;"/>
+                    <Label text="El reembolso se acreditará según las políticas de la empresa"
+                           style="-fx-font-size: 11px; -fx-text-fill: #155724; -fx-font-style: italic;"/>
+                </HBox>
+            </VBox>
+
+            <Separator styleClass="entrega-separator"/>
+
+            <!-- Motivo de Entrega Anticipada -->
+            <VBox spacing="12" styleClass="motivo-section">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="📝" styleClass="icon-decoration"/>
+                    <Label text="Motivo de la Entrega Anticipada *" styleClass="motivo-label"/>
+                </HBox>
+
+                <TextArea fx:id="txtMotivo" styleClass="motivo-textarea"
+                          prefRowCount="4" wrapText="true"
+                          promptText="Por favor, explique el motivo por el cual está entregando el vehículo antes de la fecha acordada..."/>
+
+                <Label fx:id="lblErrorMotivo" text="" styleClass="error-label" visible="false"/>
+
+                <HBox spacing="8" alignment="CENTER_LEFT" styleClass="alert-box">
+                    <Label text="💡" styleClass="alert-icon"/>
+                    <Label text="Es importante que detalle el motivo para procesar correctamente su solicitud"
+                           styleClass="alert-text" wrapText="true"/>
+                </HBox>
+            </VBox>
+
+            <!-- Nota importante -->
+            <VBox spacing="10" styleClass="nota-box">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="ℹ️" style="-fx-font-size: 18px;"/>
+                    <Label text="Información Importante"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1565c0;"/>
+                </HBox>
+                <Label text="• El vehículo debe estar en las mismas condiciones en que fue entregado"
+                       styleClass="nota-text"/>
+                <Label text="• El reembolso se procesará en un plazo de 5-7 días hábiles"
+                       styleClass="nota-text"/>
+                <Label text="• Se aplicarán las políticas de cancelación según el contrato"
+                       styleClass="nota-text"/>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- Footer fijo con botones -->
+    <VBox spacing="0" styleClass="entrega-footer">
+
+        <Separator style="-fx-background-color: #e1e8ed;"/>
+
+        <!-- Botones de Acción -->
+        <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="btnCancelar" text="✗ Cancelar" onAction="#handleCancelar"
+                    styleClass="btn-cancelar-entrega"
+                    prefWidth="170" prefHeight="45"/>
+
+            <Button fx:id="btnConfirmar" text="✓ Confirmar Entrega" onAction="#handleConfirmar"
+                    styleClass="btn-confirmar-entrega"
+                    prefWidth="210" prefHeight="45"/>
+        </HBox>
+    </VBox>
+
+</VBox>

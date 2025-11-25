@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sistema_rentacar.Controllers.Cliente.DialogoPagoTarjetaController"
+      spacing="0" prefWidth="600" prefHeight="750"
+      styleClass="payment-dialog-container"
+      stylesheets="@../../css/estilosDialogoPagoTarjeta.css">
+
+    <!-- Header del diálogo -->
+    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="payment-header">
+        <Label text="💳" styleClass="payment-icon"/>
+        <VBox spacing="2">
+            <Label text="Pago con Tarjeta" styleClass="payment-title"/>
+            <Label text="Complete los datos de forma segura" styleClass="payment-subtitle"/>
+        </VBox>
+    </HBox>
+
+    <!-- ScrollPane para el contenido -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="payment-scroll-pane"
+                style="-fx-background-color: transparent; -fx-background: transparent;">
+        <VBox spacing="20" style="-fx-padding: 20;">
+
+            <!-- Resumen del pago -->
+            <VBox spacing="10" styleClass="payment-summary">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="💰" style="-fx-font-size: 18px;"/>
+                    <Label text="Monto a Pagar" styleClass="summary-label"/>
+                </HBox>
+                <Label fx:id="lblMontoPagar" text="\$0.00" styleClass="summary-amount"/>
+                <Label fx:id="lblConcepto" text="Depósito inicial de alquiler" styleClass="summary-concept"/>
+            </VBox>
+
+            <!-- Visualización de tarjeta -->
+            <VBox spacing="12" styleClass="card-visual-container">
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Region styleClass="card-chip"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblCardBrand" text="💳" styleClass="card-brand-icon"/>
+                </HBox>
+
+                <VBox spacing="6" style="-fx-padding: 8 0 0 0;">
+                    <Label text="NÚMERO DE TARJETA" styleClass="card-info-label"/>
+                    <Label fx:id="lblCardNumberDisplay" text="•••• •••• •••• ••••" styleClass="card-number-display"/>
+                </VBox>
+
+                <HBox spacing="30">
+                    <VBox spacing="4">
+                        <Label text="TITULAR" styleClass="card-info-label"/>
+                        <Label fx:id="lblCardNameDisplay" text="NOMBRE DEL TITULAR" styleClass="card-name-display"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <VBox spacing="4">
+                        <Label text="VÁLIDA HASTA" styleClass="card-info-label"/>
+                        <Label fx:id="lblCardExpDisplay" text="MM/AA" styleClass="card-name-display"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <Separator styleClass="payment-separator"/>
+
+            <!-- Formulario de datos de tarjeta -->
+            <GridPane hgap="15" vgap="15">
+
+                <!-- Tipo de Tarjeta -->
+                <Label text="Tipo de Tarjeta:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                       styleClass="payment-field-label"/>
+                <ComboBox fx:id="cmbTipoTarjeta" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                          styleClass="payment-combo" prefWidth="280" promptText="Seleccione tipo de tarjeta"/>
+
+                <!-- Número de Tarjeta -->
+                <Label text="Número de Tarjeta:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                       styleClass="payment-field-label"/>
+                <TextField fx:id="txtNumeroTarjeta" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                           styleClass="card-number-field" promptText="1234 5678 9012 3456"/>
+
+                <!-- Nombre del Titular -->
+                <Label text="Nombre del Titular:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                       styleClass="payment-field-label"/>
+                <TextField fx:id="txtNombreTitular" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                           styleClass="payment-field" promptText="COMO APARECE EN LA TARJETA"/>
+
+                <!-- Fecha de Expiración -->
+                <Label text="Fecha de Expiración:" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                       styleClass="payment-field-label"/>
+                <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <TextField fx:id="txtMesExpiracion" styleClass="small-field" promptText="MM" prefWidth="60"/>
+                    <Label text="/" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <TextField fx:id="txtAnioExpiracion" styleClass="small-field" promptText="AA" prefWidth="60"/>
+                </HBox>
+
+                <!-- CVV -->
+                <Label text="CVV:" GridPane.columnIndex="0" GridPane.rowIndex="4"
+                       styleClass="payment-field-label"/>
+                <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtCVV" styleClass="cvv-field" promptText="123" prefWidth="80"/>
+                    <Label text="🔒 (3 o 4 dígitos)" styleClass="info-hint"/>
+                </HBox>
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="35"/>
+                    <ColumnConstraints percentWidth="65"/>
+                </columnConstraints>
+            </GridPane>
+
+            <Separator styleClass="payment-separator"/>
+
+            <!-- Información de Seguridad -->
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="security-box">
+                <Label text="🔒" styleClass="security-icon"/>
+                <VBox spacing="4">
+                    <Label text="Transacción 100% Segura" styleClass="security-title"/>
+                    <Text wrappingWidth="380" styleClass="security-text"
+                          text="Tu información está protegida con encriptación SSL. No almacenamos los datos completos de tu tarjeta."/>
+                </VBox>
+            </HBox>
+
+            <!-- Indicador de Procesamiento -->
+            <HBox fx:id="hboxProcesando" spacing="12" alignment="CENTER" visible="false" managed="false"
+                  styleClass="processing-box">
+                <ProgressIndicator prefWidth="30" prefHeight="30" styleClass="progress-indicator"/>
+                <Label text="Procesando pago..." styleClass="processing-text"/>
+            </HBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- Footer fijo con nota y botones -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 15 20; -fx-border-color: #e1e8ed; -fx-border-width: 1 0 0 0;">
+
+        <!-- Nota campos obligatorios -->
+        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="required-note">
+            <Label text="*" style="-fx-text-fill: #e74c3c; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="Todos los campos son obligatorios" styleClass="required-note-text"/>
+        </HBox>
+
+        <!-- Botones de Acción -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="btnCancelar" text="❌ Cancelar" onAction="#handleCancelar"
+                    styleClass="btn-cancel-payment" prefWidth="180" prefHeight="42"/>
+
+            <Button fx:id="btnProcesarPago" text="💳 Procesar Pago" onAction="#handleProcesarPago"
+                    styleClass="btn-process-payment" prefWidth="200" prefHeight="42"/>
+        </HBox>
+    </VBox>
+
+</VBox>

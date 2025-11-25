@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sistema_rentacar.Controllers.Empleado.FormularioVehiculoController"
+      spacing="0" prefWidth="650" prefHeight="750"
+      styleClass="form-container"
+      style="-fx-background-color: #f8f9fa;"
+      stylesheets="@../../css/estilosFormularioVehiculo.css">
+
+    <!-- Header del formulario -->
+    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="form-header"
+          style="-fx-background-color: linear-gradient(to right, #16a085, #1abc9c); -fx-padding: 25 30;">
+        <Label text="🚗" style="-fx-font-size: 32px;"/>
+        <VBox spacing="3">
+            <Label fx:id="lblTitulo" text="Nuevo Vehículo"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Complete la información del vehículo"
+                   style="-fx-font-size: 13px; -fx-text-fill: rgba(255, 255, 255, 0.8);"/>
+        </VBox>
+    </HBox>
+
+    <!-- Contenido del formulario -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent; -fx-background: transparent;">
+        <VBox spacing="25" style="-fx-padding: 30;">
+
+            <!-- Sección: Información Básica -->
+            <VBox spacing="15" styleClass="form-section">
+                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="section-header">
+                    <Label text="📋" style="-fx-font-size: 18px;"/>
+                    <Label text="Información Básica"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Region style="-fx-min-width: 50; -fx-background-color: linear-gradient(to right, #16a085, transparent); -fx-min-height: 2;"/>
+                </HBox>
+
+                <GridPane hgap="20" vgap="18" styleClass="form-grid">
+
+                    <!-- Placa -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Placa *" styleClass="field-label"/>
+                        <TextField fx:id="txtPlaca" promptText="Ej: P123456"
+                                   styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Marca -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Marca *" styleClass="field-label"/>
+                        <TextField fx:id="txtMarca" promptText="Ej: Toyota"
+                                   styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Modelo -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="Modelo *" styleClass="field-label"/>
+                        <TextField fx:id="txtModelo" promptText="Ej: Corolla"
+                                   styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Año -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Año *" styleClass="field-label"/>
+                        <Spinner fx:id="spinnerAnio" editable="true" maxWidth="Infinity" styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Color -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Label text="Color *" styleClass="field-label"/>
+                        <TextField fx:id="txtColor" promptText="Ej: Blanco"
+                                   styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Pasajeros -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="Número de Pasajeros *" styleClass="field-label"/>
+                        <Spinner fx:id="spinnerPasajeros" editable="true" maxWidth="Infinity" styleClass="form-field"/>
+                    </VBox>
+
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                    </columnConstraints>
+                </GridPane>
+            </VBox>
+
+            <!-- Separador decorativo -->
+            <Separator style="-fx-background-color: #e0e0e0; -fx-padding: 5 0;"/>
+
+            <!-- Sección: Características -->
+            <VBox spacing="15" styleClass="form-section">
+                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="section-header">
+                    <Label text="⚙️" style="-fx-font-size: 18px;"/>
+                    <Label text="Características del Vehículo"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Region style="-fx-min-width: 50; -fx-background-color: linear-gradient(to right, #3498db, transparent); -fx-min-height: 2;"/>
+                </HBox>
+
+                <GridPane hgap="20" vgap="18" styleClass="form-grid">
+
+                    <!-- Transmisión -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Transmisión *" styleClass="field-label"/>
+                        <ComboBox fx:id="cmbTransmision" maxWidth="Infinity" styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Combustible -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Tipo de Combustible *" styleClass="field-label"/>
+                        <ComboBox fx:id="cmbCombustible" maxWidth="Infinity" styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Tipo Vehículo -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="Categoría *" styleClass="field-label"/>
+                        <ComboBox fx:id="cmbTipo" maxWidth="Infinity" styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Estado -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Estado *" styleClass="field-label"/>
+                        <ComboBox fx:id="cmbEstado" maxWidth="Infinity" styleClass="form-field"/>
+                    </VBox>
+
+                    <!-- Aire Acondicionado -->
+                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+                        <Label text="Equipamiento" styleClass="field-label"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT"
+                              style="-fx-background-color: #f0f0f0; -fx-padding: 12; -fx-background-radius: 8;">
+                            <CheckBox fx:id="chkAireAcondicionado" text="Aire Acondicionado"
+                                      style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                            <Label text="❄️" style="-fx-font-size: 16px;"/>
+                        </HBox>
+                    </VBox>
+
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                    </columnConstraints>
+                </GridPane>
+            </VBox>
+
+            <!-- Separador decorativo -->
+            <Separator style="-fx-background-color: #e0e0e0; -fx-padding: 5 0;"/>
+
+            <!-- Sección: Información Adicional -->
+            <VBox spacing="15" styleClass="form-section">
+                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="section-header">
+                    <Label text="📷" style="-fx-font-size: 18px;"/>
+                    <Label text="Información Adicional"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Region style="-fx-min-width: 50; -fx-background-color: linear-gradient(to right, #9b59b6, transparent); -fx-min-height: 2;"/>
+                </HBox>
+
+                <VBox spacing="18">
+                    <!-- Imagen -->
+                    <VBox spacing="8">
+                        <Label text="Imagen del Vehículo" styleClass="field-label"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <TextField fx:id="txtImagenUrl" promptText="/images/categoria/nombre.png"
+                                       HBox.hgrow="ALWAYS" styleClass="form-field" editable="false"/>
+                            <Button fx:id="btnExaminar" text="📁 Buscar" onAction="#handleExaminar"
+                                    styleClass="btn-info" prefHeight="42"/>
+                        </HBox>
+                        <HBox spacing="8" alignment="CENTER_LEFT"
+                              style="-fx-background-color: #e8f4fd; -fx-padding: 10 12; -fx-background-radius: 6; -fx-border-color: #3498db; -fx-border-width: 1; -fx-border-radius: 6;">
+                            <Label text="ℹ️" style="-fx-font-size: 14px;"/>
+                            <Label fx:id="lblImagenInfo" text="La imagen se copiará automáticamente a la carpeta del proyecto"
+                                   style="-fx-text-fill: #2c5f8d; -fx-font-size: 11px; -fx-font-weight: bold;" wrapText="true"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Descripción -->
+                    <VBox spacing="8">
+                        <Label text="Descripción" styleClass="field-label"/>
+                        <TextArea fx:id="txtDescripcion" promptText="Agregue información adicional del vehículo (opcional)..."
+                                  prefRowCount="4" styleClass="form-textarea"/>
+                        <Label text="💡 Agregue características especiales o detalles importantes"
+                               style="-fx-text-fill: #7f8c8d; -fx-font-size: 11px; -fx-padding: 3 0 0 5;"/>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- Footer con botones -->
+    <VBox spacing="0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, -2);">
+
+        <!-- Nota de campos obligatorios -->
+        <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 15 30 10 30;">
+            <Label text="*" style="-fx-text-fill: #e74c3c; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="Campos obligatorios"
+                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <Separator style="-fx-background-color: #e0e0e0;"/>
+
+        <!-- Botones de acción -->
+        <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20 30;">
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="btnCancelar" text="❌ Cancelar" onAction="#handleCancelar"
+                    styleClass="btn-secondary"
+                    prefWidth="180" prefHeight="45"/>
+
+            <Button fx:id="btnGuardar" text="💾 Guardar Vehículo" onAction="#handleGuardar"
+                    styleClass="btn-success"
+                    prefWidth="200" prefHeight="45"/>
+        </HBox>
+    </VBox>
+
+</VBox>
